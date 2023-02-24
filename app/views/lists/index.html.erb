@@ -3,6 +3,9 @@
 
 <%= link_to "Create new list", new_list_path, class:"btn btn-primary" %>
 </br>
+</br>
+
+
 <ul>
   <% @lists.each do |list| %>
     <li><%= link_to list.name, list_path(list) %></li>

@@ -8,6 +8,7 @@
 
 require "open-uri"
 require "json"
+require "faker"
 
 url = "https://tmdb.lewagon.com/movie/top_rated"
 
@@ -31,10 +32,19 @@ movies.each do |movie|
   puts "added movie_rating"
   new_movie.save
 end
-
 puts "finished creating movies..."
 
+puts "creating lists..."
+10.times do
+  List.create(name:Faker::Ancient.hero)
+end
+puts "finished lists..."
 
+puts "creating bookmarks"
+100.times do
+  Bookmark.create(comment:Faker::Lorem.words(number: 4), movie_id: rand(1..20), list_id: rand(1..10))
+end
+puts "finishied bookmarks..."
 
 # each movie has:
 # t.string "title" movie["original_title"]

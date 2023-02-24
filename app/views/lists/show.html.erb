@@ -1,10 +1,24 @@
 <h1><%= @list.name %></h1>
+</br>
+</br>
+<%= link_to "Add movie to the list", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+</br>
+</br>
 
 <% @list.movies.each do |movie| %>
-  <%=movie.title %>
-  <%=movie.rating %>
+  <h3><%=movie.title %> : <%="⭐" * (movie.rating / 2) %></h3>
+  <img src= <%=movie.poster_url%> alt= <%=movie.title%>>
   <%=movie.overview %>
+  <%= link_to "Delete",
+  bookmark_path(Bookmark.find_by list_id: @list.id, movie_id: movie.id),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+  </br>
   </br>
 <% end %>
 
-<%= link_to "Back to lists", lists_path %>
+<%= link_to "<- back to lists", lists_path %>
+
+</br>
+</br>
+</br>
