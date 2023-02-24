@@ -10,51 +10,51 @@ require "open-uri"
 require "json"
 require "faker"
 
-Bookmark.delete_all
-puts "deleting bookmarks"
+# Bookmark.delete_all
+# puts "deleting bookmarks"
 
-List.delete_all
-puts "deleting lists"
+# List.delete_all
+# puts "deleting lists"
 
-Movie.delete_all
-puts "deleting movies"
+# Movie.delete_all
+# puts "deleting movies"
 
 
-url = "https://tmdb.lewagon.com/movie/top_rated"
+# url = "https://tmdb.lewagon.com/movie/top_rated"
 
-movies_serialized = URI.open(url).read
-movies = JSON.parse(movies_serialized)
+# movies_serialized = URI.open(url).read
+# movies = JSON.parse(movies_serialized)
 
-movies=movies["results"]
-puts movies
+# movies = movies["results"]
+# puts movies
 
-puts "creating movies..."
-movies.each do |movie|
-  new_movie = Movie.new
-  puts "added new movie"
-  new_movie.title = movie['original_title']
-  puts "added movie title"
-  new_movie.overview = movie['overview']
-  puts "added movie overview"
-  new_movie.poster_url = "https://image.tmdb.org/t/p/w500#{movie["poster_path"]}"
-  puts "added movie url"
-  new_movie.rating = movie["vote_average"]
-  puts "added movie_rating"
-  new_movie.save
-end
-puts "finished creating movies..."
+# puts "creating movies..."
+# movies.each do |movie|
+#   new_movie = Movie.new
+#   puts "added new movie"
+#   new_movie.title = movie['original_title']
+#   puts "added movie title"
+#   new_movie.overview = movie['overview']
+#   puts "added movie overview"
+#   new_movie.poster_url = "https://image.tmdb.org/t/p/w500#{movie["poster_path"]}"
+#   puts "added movie url"
+#   new_movie.rating = movie["vote_average"]
+#   puts "added movie_rating"
+#   new_movie.save
+# end
+# puts "finished creating movies..."
 
-puts "creating lists..."
-10.times do
-  List.create(name:Faker::Ancient.hero)
-end
-puts "finished lists..."
+# puts "creating lists..."
+# 10.times do
+#   List.create(name:Faker::Ancient.hero)
+# end
+# puts "finished lists..."
 
-puts "creating bookmarks"
+# puts "creating bookmarks"
 100.times do
-  Bookmark.create(comment:Faker::Lorem.words(number: 4), movie_id: rand(1..20), list_id: rand(1..10))
+  Bookmark.create(comment: Faker::Lorem.words(number: 4), movie_id: rand(21..40), list_id: rand(11..20))
 end
-puts "finishied bookmarks..."
+puts "finished bookmarks..."
 
 # each movie has:
 # t.string "title" movie["original_title"]
