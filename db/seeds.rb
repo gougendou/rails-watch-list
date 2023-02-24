@@ -10,6 +10,16 @@ require "open-uri"
 require "json"
 require "faker"
 
+Bookmark.delete_all
+puts "deleting bookmarks"
+
+List.delete_all
+puts "deleting lists"
+
+Movie.delete_all
+puts "deleting movies"
+
+
 url = "https://tmdb.lewagon.com/movie/top_rated"
 
 movies_serialized = URI.open(url).read
